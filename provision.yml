@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  remote_user: root
+  tasks:
+  - name: get node setup script
+    get_url: dest=NodePath url=https://rpm.nodesource.com/setup_4.x
+
+  - name: devel deps
+    yum: name=gcc-c++,make state=latest
+
+  - name: execute node script
+    command: sudo bash nodeSetup.sh
+
+  - name: install nodejs
+    yum: name=nodejs state=present
+
+  - name: install deps from package.json
+    command: sudo npm install
