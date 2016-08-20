@@ -7,5 +7,28 @@
 <h1>SPACE</h1>
 <h2>Fighting Circles</h2>
 Words.
+<div class="display"></div>
+<button onclick="requestPoop()">Test Request</button>
 </body>
 </html>
+
+<script>
+var display = document.getElementsByClassName("display")[0];
+function requestPoop(){
+    console.log('Poop requested...');
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            display = xhttp.response;
+            console.log(display);
+            console.log(xhttp.response);
+        }
+    };
+    console.log('opening request...');
+    xhttp.open("GET", window.location + "poop/", true);
+    console.log('sending request...');
+    xhttp.send();
+    display = xhttp.response;
+};
+
+</script>
