@@ -14,6 +14,7 @@ Words.
 
 <script>
 var display = document.getElementsByClassName("display")[0];
+var fuckFoo = ''
 function request(url){
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -21,6 +22,7 @@ function request(url){
             var response = xhttp.responseText;
             if (response != '' && (response)) {
                 display.innerHTML = response;
+                fuckFoo = response;
             } else {
                 throw Error;
             }
@@ -28,7 +30,7 @@ function request(url){
     };
     xhttp.open("GET", window.location + url + "/", true);
     xhttp.send();
+    console.log(fuckFoo);
 };
-
 
 </script>
