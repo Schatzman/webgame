@@ -8,29 +8,25 @@
 <h2>Fighting Circles</h2>
 Words.
 <div class="display"></div>
-<button onclick="request('poop')">Test Request</button>
+<button onclick="getUrl('poop')">Test Request</button>
 </body>
 </html>
 
 <script>
+
 var display = document.getElementsByClassName("display")[0];
-var fuckFoo = ''
-function request(url){
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            var response = xhttp.responseText;
-            if (response != '' && (response)) {
-                display.innerHTML = response;
-                fuckFoo = response;
-            } else {
-                throw Error;
-            }
-        }
-    };
-    xhttp.open("GET", window.location + url + "/", true);
-    xhttp.send();
-    console.log(fuckFoo);
+
+function getUrl(url) {
+    return fetch(url)
+    .then(
+        function(response) {
+            return response.text();
+        })
+    .then(
+        function(myResp) {
+            console.log(myResp)
+            display.innerHTML = myResp;
+        })
 };
 
 </script>
