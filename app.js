@@ -20,7 +20,7 @@ function getRandInt(min, max) {
 
 var db = new sqlite3.Database(file);
 
-db.serialize(function(){
+db.serialize(function(){ // serialize runs cmds in order
 
     if (!exists) {
         db.run("CREATE TABLE stuff (thing TEXT)");
