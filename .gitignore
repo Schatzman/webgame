@@ -1,3 +1,4 @@
 node_modules/sqlite3
 sftp-config.json
 *.log
+.DS_Store
