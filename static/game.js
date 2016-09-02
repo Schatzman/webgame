@@ -40,4 +40,6 @@ $(document).ready(function(){
     ctx.closePath();
     ctx.fill();
     console.log("5. Circle drawn.");
+
+    display.innerHTML = "<h1>LOADED.</h1>";
 });

@@ -41,7 +41,7 @@ db.serialize(function(){ // serialize runs cmds in order
 });
 
 function generateCharacter(name) {
-    var statsArray = ["strength","health"];
+    var statsArray = ["fertility","creative_fervor"];
     var newCharacter = {"name": name};
     for (i=0; i<statsArray.length; i++) {
         newCharacter[statsArray[i]] = getRandInt(3, 18);
@@ -55,8 +55,8 @@ function generateCharacter(name) {
 // create encounter endpoint
 // create combat end points
 
-app.get("/poop/", function (req, res) {
-  res.send("Hello fuckerhead! " + getRandInt(1, 109342) + " shhhhooooooooooooot");
+app.get("/pewp/", function (req, res) {
+  res.send("Hello spaceship! " + getRandInt(1, 109342) + " pew pew pew");
 });
 
 app.get("/create_character/", function (req, res) { // this will need to be POST
@@ -66,5 +66,5 @@ app.get("/create_character/", function (req, res) { // this will need to be POST
 var port = 8080;
 
 app.listen(port, function () {
-  console.log("App listening on port " + port + "! FUCKERFACE.");
+  console.log("App listening on port " + port + "! SCIENCE.");
 });
