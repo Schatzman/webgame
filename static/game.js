@@ -1,5 +1,14 @@
 var display = document.getElementsByClassName("display")[0];
 
+var ws = new WebSocket('ws://192.168.56.101:8080/echo');
+
+
+ws.onopen = function (event) {
+  ws.send("Here's some text that the server is urgently awaiting!"); 
+};
+
+
+
 function getUrl(url) {
     return fetch(url)
     .then(
@@ -42,4 +51,5 @@ $(document).ready(function(){
     console.log("5. Circle drawn.");
 
     display.innerHTML = "<h1>LOADED.</h1>";
+
 });

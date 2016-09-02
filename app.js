@@ -6,6 +6,8 @@ var express = require("express");
 var app = express();
 var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
+var expressWs = require('express-ws')(app);
+var ws = require('ws');
 
 app.use(express.static("static"));
 
@@ -54,6 +56,12 @@ function generateCharacter(name) {
 // func to retrieve char from db
 // create encounter endpoint
 // create combat end points
+
+app.ws('/echo', function(ws, req) {
+  ws.on('message', function(msg) {
+    ws.send(msg);
+  });
+});
 
 app.get("/pewp/", function (req, res) {
   res.send("Hello spaceship! " + getRandInt(1, 109342) + " pew pew pew");
