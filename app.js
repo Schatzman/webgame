@@ -40,8 +40,27 @@ db.serialize(function(){ // serialize runs cmds in order
     db.close();
 });
 
+function generateCharacter(name) {
+    var statsArray = ["strength","health"];
+    var newCharacter = {"name": name};
+    for (i=0; i<statsArray.length; i++) {
+        newCharacter[statsArray[i]] = getRandInt(3, 18);
+    }
+    return newCharacter;
+}
+
+// create function to add char table to db
+// create function to save char to db
+// func to retrieve char from db
+// create encounter endpoint
+// create combat end points
+
 app.get("/poop/", function (req, res) {
   res.send("Hello fuckerhead! " + getRandInt(1, 109342) + " shhhhooooooooooooot");
+});
+
+app.get("/create_character/", function (req, res) { // this will need to be POST
+    res.send(generateCharacter("default"));
 });
 
 var port = 8080;
