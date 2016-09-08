@@ -35,7 +35,7 @@ db.serialize(function(){ // serialize runs cmds in order
     }
     stmt.finalize();
 
-    db.each("SELECT rowid AS id, thing FROM Stuff", function(err, row) {
+    db.each("SELECT rowid AS id, thing FROM stuff", function(err, row) {
         console.log(row.id + ": " + row.thing);
     });
 
