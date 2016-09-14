@@ -76,6 +76,11 @@ app.get("/create_character/", function (req, res) { // this will need to be POST
     res.send(generateCharacter("default"));
 });
 
+app.post('/test-post', function(req, res) {
+    console.log(req.body);
+    console.log(req);
+});
+
 var port = 8080;
 
 app.listen(port, function () {

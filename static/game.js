@@ -21,6 +21,21 @@ function getUrl(url) {
         })
 };
 
+function postUrl(url) {
+
+    var input = $("#postData").val()
+    console.log(input);
+    var data = new FormData();
+    data.append("json", JSON.stringify(input));// data.append("json", JSON.stringify(input));// input); // JSON.stringify(input));
+
+    fetch(url, {
+        method: "POST",
+        body: data
+    });
+    // .then(function(res){ return res.json(); })
+    // .then(function(data){ alert( JSON.stringify( data ) ) })
+};
+
 $(document).ready(function(){
     console.log("1. Document ready.");
 
