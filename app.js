@@ -8,7 +8,12 @@ var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
 var expressWs = require('express-ws')(app);
 var ws = require('ws');
+var bodyParser = require('body-parser')
 
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 app.use(express.static("static"));
 
 var file = "test.db";
