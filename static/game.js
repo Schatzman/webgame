@@ -59,6 +59,7 @@ $(document).ready(function(){
   ctx.beginPath();
   ctx.arc( 20, 20, 5, 0, Math.PI*2, true );
   ctx.closePath();
+  ctx.fillStyle="#FF0000";
   ctx.fill();
   console.log("5. Circle drawn.");
 
