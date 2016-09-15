@@ -13,6 +13,3 @@
 
   - name: install nodejs
     yum: name=nodejs state=present
-
-  - name: install deps from package.json
-    command: sudo npm install

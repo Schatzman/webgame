@@ -1,0 +1,53 @@
+#!/bin/bash
+
+NIC1="enp0s3"
+NIC2="enp0s8"
+
+if [ -f "/etc/sysconfig/network-scripts/$NIC1"]; then
+    sudo ifdown $NIC && sudo ifup $NIC1
+fi
+
+if [ -f "/etc/sysconfig/network-scripts/$NIC2"]; then
+    sudo ifdown $NIC && sudo ifup $NIC2
+fi
+
+if [ ! rpm -qa epel* ]; then
+    sudo rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm;
+fi
+
+sudo yum -y update;
+
+if [ ! which git ]; then
+    sudo yum install -y git;
+fi
+
+if [ ! which wget ]; then
+    sudo yum install -y wget;
+fi
+
+if [ ! -d "/tmp/sexy-bash-prompt" ]; then
+    (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc;
+fi
+
+if [ ! which ansible ]; then
+    sudo yum -y install ansible;
+fi
+
+if [ ! -f provision.yml ]; then
+    wget https://raw.githubusercontent.com/Schatzman/webgame/master/provision.yml
+fi
+
+if [ ! node -v ] && [ -f provision.yml ]; then
+    sed -i -e "s@NodePath@${PWD}/nodeSetup.sh@g" provision.yml;
+    ansible-playbook provision.yml;
+fi
+
+if [ ! -d "webgame/" ]; then
+    git clone https://github.com/Schatzman/webgame.git;
+fi
+
+cd webgame/;
+
+sudo npm install;
+
+node app.js
