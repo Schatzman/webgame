@@ -3,11 +3,10 @@
 // *
 
 var express = require("express");
-var app = express();
+var app = require('express-ws-routes')();
 var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
 var expressWs = require('express-ws')(app);
-var ws = require('ws');
 var bodyParser = require('body-parser')
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -62,12 +61,6 @@ function generateCharacter(name) {
 // create encounter endpoint
 // create combat end points
 
-app.ws('/echo', function(ws, req) {
-  ws.on('message', function(msg) {
-    ws.send(msg);
-  });
-});
-
 app.get("/pewp/", function (req, res) {
   res.send("Hello spaceship! " + getRandInt(1, 109342) + " pew pew pew");
 });
@@ -78,7 +71,7 @@ app.get("/create_character/", function (req, res) { // this will need to be POST
 
 app.post('/test-post', function(req, res) {
     console.log(req.body);
-    console.log(req);
+    res.send({"you": "don't tell me", "what": "to do!"});
 });
 
 var port = 8080;

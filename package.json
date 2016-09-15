@@ -12,7 +12,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-ws": "^2.0.0",
-    "sqlite3": "^3.1.4",
-    "ws": "^1.1.1"
+    "express-ws-routes": "^1.1.0",
+    "sqlite3": "^3.1.4"
   }
 }

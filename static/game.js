@@ -23,17 +23,23 @@ function getUrl(url) {
 
 function postUrl(url) {
 
-    var input = $("#postData").val()
-    console.log(input);
-    var data = new FormData();
-    data.append("json", JSON.stringify(input));// data.append("json", JSON.stringify(input));// input); // JSON.stringify(input));
+    // var data = $("#postData").val();
+    var data = {"go":"win!"};
+    var postHeaders = new Headers({
+        'Content-Type': 'application/json',
+        'X-My-Custom-Header': 'CustomValue'
+    });
+
+    console.log(data);
 
     fetch(url, {
         method: "POST",
-        body: data
-    });
-    // .then(function(res){ return res.json(); })
-    // .then(function(data){ alert( JSON.stringify( data ) ) })
+        body: JSON.stringify(data),
+        // body: data,
+        headers: postHeaders
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){ console.log( JSON.stringify(data) ) })
 };
 
 $(document).ready(function(){
