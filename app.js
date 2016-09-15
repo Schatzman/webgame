@@ -3,7 +3,7 @@
 // *
 
 var express = require("express");
-var app = require('express-ws-routes')();
+var app = express();
 var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
 var expressWs = require('express-ws')(app);
@@ -72,6 +72,13 @@ app.get("/create_character/", function (req, res) { // this will need to be POST
 app.post('/test-post', function(req, res) {
     console.log(req.body);
     res.send({"you": "don't tell me", "what": "to do!"});
+});
+
+app.ws('/echo', function(ws, req) {
+  ws.on('message', function(msg) {
+    console.log(msg);
+    ws.send(msg + " FUCKER!");
+  });
 });
 
 var port = 8080;
