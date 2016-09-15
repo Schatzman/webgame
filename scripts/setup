@@ -2,13 +2,17 @@
 
 NIC1="enp0s3"
 NIC2="enp0s8"
+IFCFG1="/etc/sysconfig/network-scripts/$NIC1"
+IFCFG2="/etc/sysconfig/network-scripts/$NIC2"
 
-if [ -f "/etc/sysconfig/network-scripts/$NIC1" ]; then
-    sudo ifdown $NIC && sudo ifup $NIC1
+if [ -f "IFCFG1" ]; then
+    sed -i -e "s/ONBOOT=no/ONBOOT=yes/g" "$IFCFG1";
+    sudo ifdown $NIC && sudo ifup $NIC1;
 fi
 
-if [ -f "/etc/sysconfig/network-scripts/$NIC2" ]; then
-    sudo ifdown $NIC && sudo ifup $NIC2
+if [ -f "IFCFG2" ]; then
+    sed -i -e "s/ONBOOT=no/ONBOOT=yes/g" "$IFCFG1";
+    sudo ifdown $NIC && sudo ifup $NIC2;
 fi
 
 if ! rpm -qa | grep epel*; then

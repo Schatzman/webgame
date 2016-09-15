@@ -33,12 +33,31 @@ This app has been tested on CentOS 7 minimal install.
 - Set up NICs (I give it 2, one bridged for internet, one host-only for "airplane mode" NOTE: Host-only adapter requires host-only network setup.)
     * I'm tired of explaining [try this](http://lmgtfy.com/?q=host-only+network+virtualbox).
 - Boot up VM
-    * Go through centos install process.
+    * Go through centos install process. Create an administrator user to ssh in as.
 
 ## Install webgame
-On a fresh, minimal CentOS 7 install, run the following command:
+
+First, ssh into your fresh, minimal CentOS 7 install and verify that you have internet access.
+```bash
+ping google.com
+```
+If not, check your interfaces, and bring them online until you are able to ping some external server.
+
+To find your interface names, once again, use:
+```bash
+ip a
+```
+
+Then bring your bridged interface online:
+```bash
+sudo ifup <interface_name>
+sudo ifup em1
+sudo ifup enp0s3
+```
+
+In your workspace directory, as an administrator run the following command:
 ```bash
 sudo yum install -y wget && wget https://raw.githubusercontent.com/Schatzman/webgame/master/scripts/setup && sudo chmod +x setup && sudo ./setup
 ```
 
-NOTE: You may need to edit the epel-release version in setup.sh if 7-8 is no longer available.
+NOTE: You may need to edit the epel-release version in setup if 7-8 is no longer available.
