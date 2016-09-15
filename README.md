@@ -31,7 +31,7 @@ This app has been tested on CentOS 7 minimal install.
     * Now, over on the right-hand side of the window across from Optical Drive, click the DVD icon.
     * Choose Virtual Optical Disk File...
 - Set up NICs (I give it 2, one bridged for internet, one host-only for "airplane mode" NOTE: Host-only adapter requires host-only network setup.)
-    * I'm tired of explaining [try this](http://lmgtfy.com/?q=host-only+network+virtualbox).
+    * I'm tired of explaining <a href="http://lmgtfy.com/?q=host-only+network+virtualbox" target="_blank">try this</a>.
 - Boot up VM
     * Go through centos install process. Create an administrator user to ssh in as.
 
@@ -43,7 +43,7 @@ ping google.com
 ```
 If not, check your interfaces, and bring them online until you are able to ping some external server.
 
-To find your interface names, once again, use:
+To find your interface names use:
 ```bash
 ip a
 ```
