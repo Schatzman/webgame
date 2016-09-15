@@ -70,7 +70,7 @@ app.get("/create_character/", function (req, res) { // this will need to be POST
 });
 
 app.post('/test-post', function(req, res) {
-  console.log(req.body);
+  console.log(req.body); // need to add something to check for custom header
   res.send({"you": "don't tell me", "what": "to do!"});
 });
 

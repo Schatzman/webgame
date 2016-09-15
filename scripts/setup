@@ -1,5 +1,7 @@
 #!/bin/bash
-
+# *
+# DSM 2016
+# *
 NIC1="enp0s3"
 NIC2="enp0s8"
 IFCFG1="/etc/sysconfig/network-scripts/$NIC1"
