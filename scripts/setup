@@ -17,11 +17,11 @@ fi
 
 sudo yum -y update;
 
-if [ ! which git ]; then
+if [[ ! which git ]]; then
     sudo yum install -y git;
 fi
 
-if [ ! which wget ]; then
+if [[ ! which wget ]]; then
     sudo yum install -y wget;
 fi
 
@@ -29,7 +29,7 @@ if [ ! -d "/tmp/sexy-bash-prompt" ]; then
     (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc;
 fi
 
-if [ ! which ansible ]; then
+if [[ ! which ansible ]]; then
     sudo yum -y install ansible;
 fi
 
@@ -37,7 +37,7 @@ if [ ! -f provision.yml ]; then
     wget https://raw.githubusercontent.com/Schatzman/webgame/master/provision.yml
 fi
 
-if [ ! node -v ] && [ -f provision.yml ]; then
+if [[ ! node -v ]] && [ -f provision.yml ]; then
     sed -i -e "s@NodePath@${PWD}/nodeSetup.sh@g" provision.yml;
     ansible-playbook provision.yml;
 fi
