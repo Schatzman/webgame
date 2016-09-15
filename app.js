@@ -28,31 +28,31 @@ var db = new sqlite3.Database(file);
 
 db.serialize(function(){ // serialize runs cmds in order
 
-    if (!exists) {
-        db.run("CREATE TABLE stuff (thing TEXT)");
-    }
-    var stmt = db.prepare("INSERT INTO stuff VALUES (?)");
+  if (!exists) {
+    db.run("CREATE TABLE stuff (thing TEXT)");
+  }
+  var stmt = db.prepare("INSERT INTO stuff VALUES (?)");
 
-    for (i = 0; i < 10; i++) {
-        var rnd = getRandInt(500, 900000);
-        stmt.run("Thing #" + rnd);
-    }
-    stmt.finalize();
+  for (i = 0; i < 10; i++) {
+    var rnd = getRandInt(500, 900000);
+    stmt.run("Thing #" + rnd);
+  }
+  stmt.finalize();
 
-    db.each("SELECT rowid AS id, thing FROM stuff", function(err, row) {
-        console.log(row.id + ": " + row.thing);
-    });
+  db.each("SELECT rowid AS id, thing FROM stuff", function(err, row) {
+    console.log(row.id + ": " + row.thing);
+  });
 
-    db.close();
+  db.close();
 });
 
 function generateCharacter(name) {
-    var statsArray = ["fertility","creative_fervor"];
-    var newCharacter = {"name": name};
-    for (i=0; i<statsArray.length; i++) {
-        newCharacter[statsArray[i]] = getRandInt(3, 18);
-    }
-    return newCharacter;
+  var statsArray = ["fertility","creative_fervor"];
+  var newCharacter = {"name": name};
+  for (i=0; i<statsArray.length; i++) {
+    newCharacter[statsArray[i]] = getRandInt(3, 18);
+  }
+  return newCharacter;
 }
 
 // create function to add char table to db
@@ -66,12 +66,12 @@ app.get("/pewp/", function (req, res) {
 });
 
 app.get("/create_character/", function (req, res) { // this will need to be POST
-    res.send(generateCharacter("default"));
+  res.send(generateCharacter("default"));
 });
 
 app.post('/test-post', function(req, res) {
-    console.log(req.body);
-    res.send({"you": "don't tell me", "what": "to do!"});
+  console.log(req.body);
+  res.send({"you": "don't tell me", "what": "to do!"});
 });
 
 app.ws('/echo', function(ws, req) {
