@@ -3,15 +3,15 @@
 NIC1="enp0s3"
 NIC2="enp0s8"
 
-if [ -f "/etc/sysconfig/network-scripts/$NIC1"]; then
+if [ -f "/etc/sysconfig/network-scripts/$NIC1" ]; then
     sudo ifdown $NIC && sudo ifup $NIC1
 fi
 
-if [ -f "/etc/sysconfig/network-scripts/$NIC2"]; then
+if [ -f "/etc/sysconfig/network-scripts/$NIC2" ]; then
     sudo ifdown $NIC && sudo ifup $NIC2
 fi
 
-if [ ! rpm -qa epel* ]; then
+if [ ! rpm -qa | grep epel* ]; then
     sudo rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm;
 fi
 
