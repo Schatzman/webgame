@@ -19,10 +19,10 @@ This app has been tested on CentOS 7 minimal install.
     * Type: Linux
     * Version: Other Linux (64-bit)
     * Continue
-    * Give it at least a couple GB of RM
+    * Give it at least a couple GB of RAM
     * VDI (VirtualBox Disk Image)
     * Dynamically allocated
-    * At least a couple of GB of hard-drive space
+    * At least several GB of hard-drive space
 - Right-click the new VM > select Settings OR Click the orange settings gear
 - Click System (optional increase cores)
     * Click Processor > increase the available cores
