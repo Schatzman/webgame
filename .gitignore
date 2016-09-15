@@ -1,4 +1,6 @@
-node_modules/sqlite3
+node_modules/
+WB_DEV_PATH/
 sftp-config.json
+*.db
 *.log
 .DS_Store
