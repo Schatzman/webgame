@@ -57,7 +57,7 @@ $(document).ready(function(){
   var ctx = canvas.getContext( '2d' );
   //draw player circle to start
   ctx.beginPath();
-  ctx.arc( 20, 20, 5, 0, Math.PI*2, true );
+  ctx.arc( 600, 300, 5, 0, Math.PI*2, true );
   ctx.closePath();
   ctx.fillStyle="#FF0000";
   ctx.fill();
