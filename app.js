@@ -15,74 +15,48 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 app.use(express.static("static"));
 
-var file = "test.db";
-var exists = fs.existsSync(file);
+var grossDbFile = "grossPeople.db";
+var exists = fs.existsSync(grossDbFile);
 
-function getRandInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+app.get("/gross-people/", function (req, res) {
+  console.log("/gross-people URL HIT");
+  var db = new sqlite3.Database(grossDbFile);
+  db.serialize(function(){
+    db.all("SELECT rowid AS id, firstname, lastname FROM gross", function(err, rows) {
+      console.log(rows);
+      res.send(JSON.stringify({"grossPeople": rows}));
+    });
+    db.close();
+  });
+});
 
-var db = new sqlite3.Database(file);
-
-db.serialize(function(){ // serialize runs cmds in order
+app.post("/report-gross-person", function (req, res) {
+  console.log("/report-gross-person URL HIT");
+  var db = new sqlite3.Database(grossDbFile);
+  var firstname = req.body.firstname;
+  var lastname = req.body.lastname;
+  console.log(lastname + ", " + firstname);
+  db.serialize(function(){
 
   if (!exists) {
-    db.run("CREATE TABLE stuff (thing TEXT)");
+    db.run("CREATE TABLE gross (firstname TEXT, lastname TEXT)");
   }
-  var stmt = db.prepare("INSERT INTO stuff VALUES (?)");
+  var stmt = db.prepare("INSERT INTO gross VALUES (?, ?)");
 
-  for (i = 0; i < 10; i++) {
-    var rnd = getRandInt(500, 900000);
-    stmt.run("Thing #" + rnd);
-  }
+  stmt.run(firstname, lastname);
   stmt.finalize();
 
-  db.each("SELECT rowid AS id, thing FROM stuff", function(err, row) {
-    console.log(row.id + ": " + row.thing);
+  db.each("SELECT rowid AS id, firstname, lastname FROM gross", function(err, row) {
+    console.log(row.id + ": " + row.lastname + ", " + row.firstname);
   });
 
   db.close();
-});
-
-function generateCharacter(name) {
-  var statsArray = ["fertility","creative_fervor"];
-  var newCharacter = {"name": name};
-  for (i=0; i<statsArray.length; i++) {
-    newCharacter[statsArray[i]] = getRandInt(3, 18);
-  }
-  return newCharacter;
-}
-
-// create function to add char table to db
-// create function to save char to db
-// func to retrieve char from db
-// create encounter endpoint
-// create combat end points
-
-app.get("/pewp/", function (req, res) {
-  res.send("Hello spaceship! " + getRandInt(1, 109342) + " pew pew pew");
-});
-
-app.get("/create_character/", function (req, res) { // this will need to be POST
-  res.send(generateCharacter("default"));
-});
-
-app.post('/test-post', function(req, res) {
-  console.log(req.body); // need to add something to check for custom header
-  res.send({"you": "don't tell me", "what": "to do!"});
-});
-
-app.ws('/echo', function(ws, req) {
-  ws.on('message', function(msg) {
-    console.log(msg);
-    ws.send(msg + " FUCKER!");
   });
+  res.send(JSON.stringify({"good": "insertion"}));
 });
 
 var port = 8080;
 
 app.listen(port, function () {
-  console.log("App listening on port " + port + "! SCIENCE.");
+  console.log("Gross people who don't wash their hands app listening on port " + port + "! SCIENCE.");
 });

@@ -3,21 +3,22 @@
 <head>
     <link rel="icon" type="image/png" href="favicon.png"/>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>SPACE: FIGHTING CIRCLES</title>
+    <title>SHAME: YOU DIDN'T WASH YOUR HANDS</title>
 </head>
 <body>
-<h1>SPACE</h1>
-<h2>Fighting Circles</h2>
-Words.
+<h1>SHAME!</h1>
+<h2>YOU DIDN'T WASH YOUR HANDS</h2>
 <div class="display"></div>
-<button onclick="getUrl('pewp')">Test GET Request</button>
-<button onclick="postUrl('test-post')">Test POST Request</button>
-<button id="socket-button">Test Socket Connection</button>
-<textarea id="postData" default='{"some_test_post":"data"}'></textarea>
-<p>SPACE SPACE SPACEY SPACE SPACE</p>
+<p>This database is devoted to anonymously shaming people who use the restroom and then don't wash their hands. Disgusting.</p>
+<button onclick="getUrl('/gross-people/')">Get Database Contents</button><br>
+<form id="gross-people-form">
+    <input type="text" id="firstname"><br>
+    <input type="text" id="lastname"><br>
+    <input type="submit" id="gross-people-form-submit" onclick="postGrossPerson()">
+</form>
 </body>
 </html>
 <script src="jquery.v2.1.1.min.js">
 </script>
-<script src="game.js">
+<script src="gross.js">
 </script>
