@@ -65,7 +65,7 @@ $(document).ready(function(){
 
   display.innerHTML = "<h1>LOADED.</h1>";
 
-  var exampleSocket = new WebSocket("ws://192.168.56.101:8080/echo");
+  var exampleSocket = new WebSocket("ws://" + document.location.hostname + ":" + document.location.port + "/echo");
 
   console.log("Opening socket:");
   console.log(exampleSocket);
