@@ -9,12 +9,12 @@ IFCFG2="/etc/sysconfig/network-scripts/$NIC2"
 
 if [ -f "IFCFG1" ]; then
     sed -i -e "s/ONBOOT=no/ONBOOT=yes/g" "$IFCFG1";
-    sudo ifdown $NIC && sudo ifup $NIC1;
+    sudo ifdown $NIC1 && sudo ifup $NIC1;
 fi
 
 if [ -f "IFCFG2" ]; then
     sed -i -e "s/ONBOOT=no/ONBOOT=yes/g" "$IFCFG1";
-    sudo ifdown $NIC && sudo ifup $NIC2;
+    sudo ifdown $NIC2 && sudo ifup $NIC2;
 fi
 
 if ! rpm -qa | grep epel*; then
